@@ -6,7 +6,7 @@ const IndexPage = () => {
     const [list, setlist] = useState([]);
 
     const getData = () => {
-        axios.get('http://5c92dbfae7b1a00014078e61.mockapi.io/owners')
+        axios.get('https://5c92dbfae7b1a00014078e61.mockapi.io/owners')
             .then((res) => {
                 let arr = res?.data || [];
                 arr.forEach(element => {
