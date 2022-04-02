@@ -1,7 +1,7 @@
 # 安装
 首先执行 npm install 然后再在项目文件夹根目录执行 npm start 即可启动项目
 # 代码主要逻辑
-代码主要逻辑如下：
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import './index.scss';
