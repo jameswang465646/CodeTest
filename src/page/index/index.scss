@@ -1,0 +1,12 @@
+.exampleList{
+    width: 150px;
+    &-item{
+        &-title{
+            text-align: left;
+        }
+        &-list{
+            text-align: right;
+            padding: 10px 0;
+        }
+    }
+}
