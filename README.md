@@ -13,21 +13,39 @@ const IndexPage = () => {
         axios.get('https://5c92dbfae7b1a00014078e61.mockapi.io/owners')
             .then((res) => {
                 let arr = res?.data || [];
+                let newarr = JSON.parse(JSON.stringify(arr));
+                let flagArr = newarr.map(item=>item.gender)
+                newarr = newarr.filter((item,index)=>{
+                    return flagArr.indexOf(item.gender) === index
+                })
                 arr.forEach(element => {
+                  newarr.forEach(element2=>{
+                      if(element.gender === element2.gender && element?.pets?.length>0){
+                        element2.pets = (element2.pets || []).concat(element.pets)
+                      }
+                  }) 
+                });
+                newarr.forEach(element => {
                     if (element?.pets?.length > 0) {
-                        element.pets = element.pets.sort((a, b) => {
+                        element.pets.sort((a, b) => {
                             let index1 = a.name.substr(0, 1);
                             let index2 = b.name.substr(0, 1);
                             return index1.localeCompare(index2)
                         })
+                        let exampleArr = element.pets.map(item=>item.name)
+                        element.pets = element.pets.filter((item2,i)=>{
+                            return exampleArr.indexOf(item2.name) === i
+                        })
                     }
                 });
-                setlist(arr)
+                console.log(newarr)
+                setlist(newarr)
             })
             .catch((error) => {
                 console.log(error);
             })
     }
+    
     useEffect(() => {
         getData()
     }, [])
